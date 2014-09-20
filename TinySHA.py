@@ -1,6 +1,7 @@
 import hashlib
+import random
 
-hashCounter = 0
+hashCounter = random.randint(-10000000, 10000000)
 
 def getTinySHA1(numBits):
 
@@ -8,8 +9,10 @@ def getTinySHA1(numBits):
     m = hashlib.sha1()
     m.update(str(hashCounter))
     b = bytearray(m.hexdigest())
-    print(b)
-
     hashCounter += 1
-    
-getTinySHA1(16)
+    return b[0:numBits/4]    
+
+def getCurrentSeed():
+
+    global hashCounter
+    return str(hashCounter)
